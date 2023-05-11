@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   try {
     const categoryData = Category.findAll({
       // be sure to include its associated Products
-      include: [{ model: PrdouctTag }]
+      include: [{ model: Product }]
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   // find one category by its `id` value
   try {
     const categoryData = Category.findByPk(req.params.id, {
-      include: [{ model: ProductTag }]
+      include: [{ model: Product }]
     });
 
     if (!categoryData) {
@@ -46,10 +46,42 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  try {
+    const categoryData = Category.update({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!categoryData) {
+      res.status(404).json({ message: 'No Category found with this id!' });
+      return;
+    };
+
+    res.status(200).json(categoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  try {
+    const categoryData = Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!categoryData) {
+      res.status(404).json({ message: 'No Category found with this id!' });
+      return;
+    };
+
+    res.status(200).json(categoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

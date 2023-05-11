@@ -15,7 +15,7 @@ Product.init(
       primaryKey: true,
       autoIncrement: true
     },
-    productName: {
+    product_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -23,20 +23,23 @@ Product.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
-        // validate that this is a decimal
+        isDecimal: true
       }
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // set default value as 10
+      defaultValue: 10,
       validate: {
-        // validate that this is a number
+        isNumeric: true
       }
     },
-    categoryId: {
+    category_id: {
       type: DataTypes.INTEGER,
-      // reference the category model id
+      references: {
+        model: 'category',
+        key: 'id'
+      }
     }
   },
   {

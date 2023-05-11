@@ -19,3 +19,5 @@ To use this application, simply create a database named ecommerce_db in MySQL.
 Next, run the command `node server.js` in the CLI to start the server.
 
 Finally, using Insomnia or some other API tester, use the API routes to create, read, update, and delete data in the database.
+
+Here is a video showing how to use the application: https://drive.google.com/file/d/1vgECakMXYhQLjIIhZ_NX0SsdZ3n3ZgcH/view 
